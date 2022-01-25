@@ -5,6 +5,7 @@ import styles from './MovieList.module.css';
 
 export default function MovieList({ films }) {
   const location = useLocation();
+  const { url } = useRouteMatch();
   const [movies, setMovies] = useState();
 
   useEffect(() => {
@@ -19,13 +20,13 @@ export default function MovieList({ films }) {
             <li key={id}>
               <Link
                 to={{
-                  pathname: `/movies/${id}`,
+                  pathname: `${url}movies/${id}`,
                   state: { from: location },
                 }}
               >
                 <img
                   src={`https://image.tmdb.org/t/p/w500${poster_path}`}
-                  //   alt={title}
+                  alt={title}
                   //   title={title}
                 />
                 <p>{title}</p>

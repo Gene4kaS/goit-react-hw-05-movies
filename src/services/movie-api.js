@@ -1,4 +1,4 @@
-const BASE_URL = 'https://api.themoviedb.org';
+const BASE_URL = 'https://api.themoviedb.org/3';
 const MY_KEY = 'b858cbc4a863372930e50a4f72c899cf';
 
 async function fetchWithErrorHandling(url = '', config = {}) {

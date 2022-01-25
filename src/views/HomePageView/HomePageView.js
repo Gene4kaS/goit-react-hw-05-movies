@@ -4,11 +4,12 @@ import MovieList from '../../components/MovieList/MovieList';
 import styles from './HomePageView.module.css';
 
 export default function HomePageView() {
+  const [page, setPage] = useState(1);
   const [films, setFilms] = useState([]);
 
   useEffect(() => {
-    fetchMovieTrending().then(setFilms);
-  }, []);
+    return fetchMovieTrending(page).then(setFilms);
+  }, [page]);
 
   return (
     <>{films && <MovieList films={films} title="Popular movies are:" />}</>
