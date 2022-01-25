@@ -18,12 +18,7 @@ export default function MovieList({ films }) {
         {films &&
           films.map(({ title, id, poster_path }) => (
             <li key={id}>
-              <Link
-                to={{
-                  pathname: `${url}movies/${id}`,
-                  state: { from: location },
-                }}
-              >
+              <Link to={`${url}movies/${id}`} state={{ from: location }}>
                 <img
                   src={`https://image.tmdb.org/t/p/w500${poster_path}`}
                   alt={title}
