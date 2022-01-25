@@ -14,14 +14,15 @@ export default function MovieList({ films }) {
 
   return (
     <>
-      <ul>
+      <ul className={styles.ImageGallery}>
         {films &&
           films.map(({ title, id, poster_path }) => (
-            <li key={id}>
+            <li key={id} className={styles.ImageGalleryItem}>
               <Link to={`/movies/${id}`} state={{ from: location }}>
                 <img
                   src={`https://image.tmdb.org/t/p/w500${poster_path}`}
                   alt={title}
+                  className={styles.ImageGalleryItem_image}
                   //   title={title}
                 />
                 <p>{title}</p>
