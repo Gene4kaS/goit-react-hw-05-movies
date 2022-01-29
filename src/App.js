@@ -10,6 +10,18 @@ const HomePageView = lazy(() =>
   ),
 );
 
+const MoviesPageView = lazy(() =>
+  import(
+    './views/MoviesPageView/MoviesPageView' /* webpackChunkName: "movie-view" */
+  ),
+);
+
+const MovieDetailsPageView = lazy(() =>
+  import(
+    './views/MovieDetailsPageView/MovieDetailsPageView' /* webpackChunkName: "details-view" */
+  ),
+);
+
 export default function App() {
   return (
     <Container>
@@ -17,6 +29,14 @@ export default function App() {
       <Suspense fallback={<h1>ЗАГРУЖАЕМ МАРШРУТ...</h1>}>
         <Route path="/" exact>
           <HomePageView />
+        </Route>
+
+        <Route path="/movies">
+          <MoviesPageView />
+        </Route>
+
+        <Route path="/movies/:movieId">
+          <MovieDetailsPageView />
         </Route>
       </Suspense>
     </Container>

@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import * as movieApi from '../../services/movie-api';
 import MovieList from '../../components/MovieList/MovieList';
-import styles from './HomePageView.module.css';
 
 export default function HomePageView() {
   const [films, setFilms] = useState([]);

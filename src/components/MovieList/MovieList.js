@@ -1,11 +1,10 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
-import { Link, useRouteMatch, useLocation } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import styles from './MovieList.module.css';
 
 export default function MovieList({ films }) {
   const location = useLocation();
-  //   const { url } = useRouteMatch();
   const [movies, setMovies] = useState();
 
   useEffect(() => {
@@ -23,7 +22,6 @@ export default function MovieList({ films }) {
                   src={`https://image.tmdb.org/t/p/w500${poster_path}`}
                   alt={title}
                   className={styles.ImageGalleryItem_image}
-                  //   title={title}
                 />
                 <p>{title}</p>
               </Link>
