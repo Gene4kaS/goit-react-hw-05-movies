@@ -6,6 +6,7 @@ import {
   Route,
   useLocation,
   useHistory,
+  Link,
 } from 'react-router-dom';
 import * as movieApi from '../../services/movie-api';
 import s from './MovieDetailsPageView.module.css';
@@ -25,15 +26,19 @@ export default function MovieDetailsPageView() {
     movieApi.fetchMovieDetails(movieId).then(movie => setMovie(movie));
   }, [movieId]);
 
-  const onGoBack = () => {
-    history.push(location?.state?.from ?? '/');
-  };
+  // const onGoBack = () => {
+  //   history.push(location?.state?.from ?? '/');
+  // };
 
   return (
     <>
       {movie && (
         <>
-          <button type="button" onClick={onGoBack} className={s.goBackButton}>
+          <button
+            type="button"
+            onClick={() => history.goBack()}
+            className={s.goBackButton}
+          >
             Go back
           </button>
           <div className={s.movieCard}>
@@ -63,7 +68,7 @@ export default function MovieDetailsPageView() {
         <li className={s.item}>
           <NavLink
             to={{
-              pathname: `${url}/cast`,
+              pathname: `/movies/${url}/cast`,
               state: { from: location?.state?.from ?? '/' },
             }}
             className={s.link}

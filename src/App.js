@@ -31,7 +31,7 @@ export default function App() {
           <HomePageView />
         </Route>
 
-        <Route path="/movies">
+        <Route path="/movies" exact>
           <MoviesPageView />
         </Route>
 

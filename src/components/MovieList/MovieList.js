@@ -1,15 +1,9 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import styles from './MovieList.module.css';
 
 export default function MovieList({ films }) {
   const location = useLocation();
-  const [movies, setMovies] = useState();
-
-  useEffect(() => {
-    setMovies(films);
-  }, []);
 
   return (
     <>
