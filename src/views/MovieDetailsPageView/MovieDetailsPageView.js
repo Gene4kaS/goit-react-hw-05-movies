@@ -6,7 +6,6 @@ import {
   Route,
   useLocation,
   useHistory,
-  Link,
 } from 'react-router-dom';
 import * as movieApi from '../../services/movie-api';
 import s from './MovieDetailsPageView.module.css';
@@ -25,10 +24,6 @@ export default function MovieDetailsPageView() {
   useEffect(() => {
     movieApi.fetchMovieDetails(movieId).then(movie => setMovie(movie));
   }, [movieId]);
-
-  // const onGoBack = () => {
-  //   history.push(location?.state?.from ?? '/');
-  // };
 
   return (
     <>
@@ -68,8 +63,8 @@ export default function MovieDetailsPageView() {
         <li className={s.item}>
           <NavLink
             to={{
-              pathname: `/movies/${url}/cast`,
-              state: { from: location?.state?.from ?? '/' },
+              pathname: `${url}/cast`,
+              state: { from: location.state },
             }}
             className={s.link}
             activeClassName={s.activeLink}
@@ -79,7 +74,7 @@ export default function MovieDetailsPageView() {
         </li>
       </ul>
       <Suspense fallback={<h1>ЗАГРУЖАЕМ МАРШРУТ...</h1>}>
-        <Route path={`${path}/cast`} component={Cast} />
+        <Route path={`${path}/cast`}>{movie && <Cast />}</Route>
       </Suspense>
     </>
   );

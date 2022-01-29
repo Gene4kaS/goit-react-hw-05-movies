@@ -4,7 +4,7 @@ import * as movieApi from '../../services/movie-api';
 import { useParams } from 'react-router-dom';
 import noPhoto from '../icons/nophoto.jpg';
 
-export default function CastView() {
+export default function Cast() {
   const { movieId } = useParams;
   const { cast, setCast } = useState([]);
 
@@ -15,27 +15,23 @@ export default function CastView() {
   return (
     <div>
       <ul className={s.castList}>
-        {cast.length > 0 ? (
-          cast.map(actor => (
-            <li key={actor.id} className={s.castItem}>
-              <img
-                src={
-                  actor.profile_path
-                    ? `https://image.tmdb.org/t/p/w200${actor.profile_path}`
-                    : noPhoto
-                }
-                alt={actor.name}
-                width="100"
-              />
-              <div>
-                <p className={s.actorName}>{actor.name}</p>
-                <p className={s.actorName}>{actor.character}</p>
-              </div>
-            </li>
-          ))
-        ) : (
-          <p>Nothing about cast :(</p>
-        )}
+        {cast.map(actor => (
+          <li key={actor.id} className={s.castItem}>
+            <img
+              src={
+                actor.profile_path
+                  ? `https://image.tmdb.org/t/p/w200${actor.profile_path}`
+                  : noPhoto
+              }
+              alt={actor.name}
+              width="100"
+            />
+            <div>
+              <p className={s.actorName}>{actor.name}</p>
+              <p className={s.actorName}>{actor.character}</p>
+            </div>
+          </li>
+        ))}
       </ul>
     </div>
   );
