@@ -4,6 +4,7 @@ import {
   NavLink,
   useRouteMatch,
   Route,
+  Switch,
   useLocation,
   useHistory,
 } from 'react-router-dom';
@@ -13,6 +14,13 @@ import s from './MovieDetailsPageView.module.css';
 const Cast = lazy(() =>
   import('../../components/Cast/Cast' /* webpackChunkName: "cast-view"*/),
 );
+
+const Reviews = lazy(() =>
+  import(
+    '../../components/Reviews/Reviews' /* webpackChunkName: "reviews-view"*/
+  ),
+);
+
 export default function MovieDetailsPageView() {
   const { movieId } = useParams();
   const [movie, setMovie] = useState(null);
@@ -71,10 +79,27 @@ export default function MovieDetailsPageView() {
           >
             Cast
           </NavLink>
+          <NavLink
+            to={{
+              pathname: `${url}/reviews`,
+              state: { from: location.state },
+            }}
+            className={s.link}
+            activeClassName={s.activeLink}
+          >
+            Reviews
+          </NavLink>
         </li>
       </ul>
       <Suspense fallback={<h1>ЗАГРУЖАЕМ МАРШРУТ...</h1>}>
-        <Route path={`${path}/cast`}>{movie && <Cast />}</Route>
+        <Switch>
+          <Route index path={`${path}/cast`}>
+            {movie && <Cast />}
+          </Route>
+          <Route index path={`${path}/reviews`}>
+            {movie && <Reviews />}
+          </Route>
+        </Switch>
       </Suspense>
     </>
   );

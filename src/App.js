@@ -2,7 +2,7 @@ import './App.css';
 import Container from './components/Container/Container';
 import Appbar from './components/AppBar/AppBar';
 import { lazy, Suspense } from 'react';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
 
 const HomePageView = lazy(() =>
   import(
@@ -31,21 +31,23 @@ export default function App() {
     <Container>
       <Appbar />
       <Suspense fallback={<h1>ЗАГРУЖАЕМ МАРШРУТ...</h1>}>
-        <Route path="/" exact>
-          <HomePageView />
-        </Route>
+        <Switch>
+          <Route path="/" exact>
+            <HomePageView />
+          </Route>
 
-        <Route path="/movies" exact>
-          <MoviesPageView />
-        </Route>
+          <Route path="/movies" exact>
+            <MoviesPageView />
+          </Route>
 
-        <Route path="/movies/:movieId">
-          <MovieDetailsPageView />
-        </Route>
+          <Route path="/movies/:movieId">
+            <MovieDetailsPageView />
+          </Route>
 
-        <Route>
-          <NotFoundView />
-        </Route>
+          <Route>
+            <NotFoundView />
+          </Route>
+        </Switch>
       </Suspense>
     </Container>
   );
