@@ -33,15 +33,19 @@ export default function MovieDetailsPageView() {
     movieApi.fetchMovieDetails(movieId).then(movie => setMovie(movie));
   }, [movieId]);
 
-  const onGoBack = () => {
-    history.push(location?.state?.from ?? '/');
-  };
+  // const onGoBack = () => {
+  //   history.push(location?.state?.from ?? '/');
+  // };
 
   return (
     <>
       {movie && (
         <>
-          <button type="button" onClick={onGoBack} className={s.goBackButton}>
+          <button
+            type="button"
+            onClick={history.goBack}
+            className={s.goBackButton}
+          >
             Go back
           </button>
           <div className={s.movieCard}>
